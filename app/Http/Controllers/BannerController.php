@@ -46,7 +46,7 @@ class BannerController extends Controller
             'condition' => 'required|in:banner,promo'
         ]);
 
-        $imageName = $request->file('image');
+        $imageName = $request->file('photo');
         $imagePath = $imageName->storeAs('public/images/banner', rand(1, 99999) . $imageName->getClientOriginalName());
 
         Banner::create([
@@ -100,7 +100,7 @@ class BannerController extends Controller
             'condition' => 'required|in:banner,promo'
         ]);
 
-        $imageName = $request->file('image');
+        $imageName = $request->file('photo');
         $imagePath = $imageName->storeAs('public/images/banner', rand(1, 99999) . $imageName->getClientOriginalName());
 
         Banner::where('id', $id)->update([

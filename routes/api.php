@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,10 +32,24 @@ Route::prefix('admin')->group(function () {
         /**
          * Banner CRUD
          */
-        Route::get('/banner', [BannerController::class, 'index']);
-        Route::post('/banner', [BannerController::class, 'store']);
-        Route::put('/banner/{id}', [BannerController::class, 'update']);
-        Route::delete('/banner/{id}', [BannerController::class, 'destroy']);
+        Route::prefix('banner')->group(function () {
+            Route::get('/', [BannerController::class, 'index']);
+            Route::post('/', [BannerController::class, 'store']);
+            Route::put('/{id}', [BannerController::class, 'update']);
+            Route::delete('/{id}', [BannerController::class, 'destroy']);
+        });
+
+
+        /**
+         * Category CRUD
+         */
+        Route::prefix('category')->group(function () {
+            Route::get('/', [CategoryController::class, 'index']);
+            Route::post('/', [CategoryController::class, 'store']);
+            Route::put('/{id}', [CategoryController::class, 'update']);
+            Route::delete('/{id}', [CategoryController::class, 'destroy']);
+        });
+
 
 
         Route::post('/logout', [AdminController::class, 'logout']);
