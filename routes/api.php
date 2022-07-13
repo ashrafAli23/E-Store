@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +59,17 @@ Route::prefix('admin')->group(function () {
             Route::post('/', [BrandController::class, 'store']);
             Route::put('/{id}', [BrandController::class, 'update']);
             Route::delete('/{id}', [BrandController::class, 'destroy']);
+        });
+
+        /**
+         * Product CRUD
+         */
+        Route::prefix('product')->group(function () {
+            Route::get('/', [ProductController::class, 'index']);
+            Route::post('/', [ProductController::class, 'store']);
+            Route::get('/{id}', [ProductController::class, 'show']);
+            Route::put('/{id}', [ProductController::class, 'update']);
+            Route::delete('/{id}', [ProductController::class, 'destroy']);
         });
 
         Route::post('/logout', [AdminController::class, 'logout']);
