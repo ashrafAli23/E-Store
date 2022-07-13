@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +40,6 @@ Route::prefix('admin')->group(function () {
             Route::delete('/{id}', [BannerController::class, 'destroy']);
         });
 
-
         /**
          * Category CRUD
          */
@@ -50,7 +50,15 @@ Route::prefix('admin')->group(function () {
             Route::delete('/{id}', [CategoryController::class, 'destroy']);
         });
 
-
+        /**
+         * Brand CRUD
+         */
+        Route::prefix('brand')->group(function () {
+            Route::get('/', [BrandController::class, 'index']);
+            Route::post('/', [BrandController::class, 'store']);
+            Route::put('/{id}', [BrandController::class, 'update']);
+            Route::delete('/{id}', [BrandController::class, 'destroy']);
+        });
 
         Route::post('/logout', [AdminController::class, 'logout']);
     });
